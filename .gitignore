@@ -35,3 +35,4 @@ build/
 ### Custom ###
 docker/grafana/data
 docker/prometheus/data
+docker/redis/data
