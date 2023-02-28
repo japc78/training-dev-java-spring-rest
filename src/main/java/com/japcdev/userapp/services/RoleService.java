@@ -14,7 +14,7 @@ import com.japcdev.userapp.entities.Role;
 import com.japcdev.userapp.repositories.RoleRepository;
 
 @Service
-public class RoleService extends appService{
+public class RoleService extends AppService{
 
   @Autowired
   private RoleRepository repository;

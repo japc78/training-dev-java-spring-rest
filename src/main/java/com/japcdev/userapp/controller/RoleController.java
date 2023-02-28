@@ -18,7 +18,7 @@ import com.japcdev.userapp.entities.Role;
 import com.japcdev.userapp.services.RoleService;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("/v1/roles")
 public class RoleController {
 
   @Autowired
