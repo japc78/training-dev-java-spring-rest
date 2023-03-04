@@ -33,7 +33,6 @@ public class UserService {
       User user = new User();
       user.setUsername(faker.name().username());
       user.setPassword( faker.dragonBall().character());
-      user.setProfile(null);
       users.add(user);
     }
     return repository.saveAll(users);

@@ -1,7 +1,5 @@
 package com.japcdev.userapp.repositories;
 
-import java.awt.print.Pageable;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;

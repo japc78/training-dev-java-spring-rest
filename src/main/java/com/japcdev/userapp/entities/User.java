@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +20,6 @@ public class User {
 
   @Column(name = "password")
   private String password;
-
-  @OneToOne
-  @JoinColumn(name = "profile_id", referencedColumnName = "id")
-  private Profile profile;
 
   /**
    * @return the id
@@ -67,20 +61,6 @@ public class User {
    */
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  /**
-   * @return the profile
-   */
-  public Profile getProfile() {
-    return profile;
-  }
-
-  /**
-   * @param profile the profile to set
-   */
-  public void setProfile(Profile profile) {
-    this.profile = profile;
   }
 
   /* (non-Javadoc)

@@ -32,7 +32,6 @@ public class RoleController {
   @PostMapping
   public ResponseEntity<Role> createRole(@RequestBody Role role) {
     return new ResponseEntity<Role>(service.createRole(role), HttpStatus.CREATED);
-
   }
 
   @PutMapping("/{roleId}")
