@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.japcdev.userapp.entities.Role;
+import com.japcdev.userapp.entities.User;
 import com.japcdev.userapp.repositories.RoleRepository;
+import com.japcdev.userapp.repositories.UserInRoleRepository;
 
 @Service
 public class RoleService extends AppService{
@@ -19,10 +21,18 @@ public class RoleService extends AppService{
   @Autowired
   private RoleRepository repository;
 
+  @Autowired
+  private UserInRoleRepository userInRoleRepository;
+
   @Cacheable("roles")
   public List<Role> getRoles() {
     logger.info("Getting roles from cache");
     return repository.findAll();
+  }
+
+  @Cacheable("roles")
+  public List<User> getUserByRole(String roleName){
+    return userInRoleRepository.findUsersByRole(roleName);
   }
 
   @CacheEvict(value = "roles" , allEntries = true)

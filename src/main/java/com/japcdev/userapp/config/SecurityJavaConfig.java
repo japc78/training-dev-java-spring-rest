@@ -12,14 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityJavaConfig extends WebSecurityConfigurerAdapter{
-
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-      .withUser("admin").password(encoder().encode("1234")).roles("ADMIN").and()
-      .withUser("user").password(encoder().encode("1234")).roles("DEFAULT");
-  }
-
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable().authorizeRequests()
@@ -27,10 +19,8 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter{
       .antMatchers("/v1/roles/**").permitAll().anyRequest().authenticated()
       .and().httpBasic();
   }
-
   @Bean
   public PasswordEncoder encoder() {
     return new BCryptPasswordEncoder();
   }
-
 }
