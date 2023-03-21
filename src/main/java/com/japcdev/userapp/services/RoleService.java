@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -19,6 +20,9 @@ public class RoleService extends AppService{
   @Autowired
   private RoleRepository repository;
 
+  @Autowired
+  private KafkaTemplate<Integer, String> kafkaTemplate;
+
   @Cacheable("roles")
   public List<Role> getRoles() {
     logger.info("Getting roles from cache");
@@ -27,7 +31,9 @@ public class RoleService extends AppService{
 
   @CacheEvict(value = "roles" , allEntries = true)
   public Role createRole(Role role) {
-    return repository.save(role);
+    Role roleCreated = repository.save(role);
+    kafkaTemplate.send("app-topic", "Role send -> " + role.getName());
+    return roleCreated;
   }
 
   @CacheEvict(value = "roles" , allEntries = true)
