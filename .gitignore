@@ -36,3 +36,5 @@ build/
 docker/grafana/data
 docker/prometheus/data
 docker/redis/data
+docker/kafka
+docker/zookeeper
